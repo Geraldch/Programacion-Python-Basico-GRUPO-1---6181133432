@@ -40,7 +40,6 @@ def comparar_pacientes(datos, id1, id2):
     print("\nComparación de Pacientes:")
     if id1 != id2:
         if comunes_enfermedades:
-            print('\nEnfermedades en común:')
             #Si no hay comparaciones, muestra ninguna
             print(f"Enfermedades en común: {', '.join(comunes_enfermedades) if comunes_enfermedades else 'Ninguna'}")
         else:
@@ -50,7 +49,6 @@ def comparar_pacientes(datos, id1, id2):
         
     if id1 != id2:
         if comunes_enfermedades:
-            print('\nEnfermedades en común:')
             #Si no hay comparaciones, muestra ninguna
             print(f"Medicamentos en común: {', '.join(comunes_medicamentos) if comunes_medicamentos else 'Ninguno'}")
         else:
