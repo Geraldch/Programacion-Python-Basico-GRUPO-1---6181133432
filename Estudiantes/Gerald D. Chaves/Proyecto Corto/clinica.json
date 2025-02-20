@@ -1,86 +1,12 @@
 [
-    {
-      "Pacientes": [
-        {
-          "Identificacion": "123",
-          "Telefono": "89076541",
-          "Provincia": "Heredia",
-          "Canton": "Barva",
-          "Enfermedad": "Gripe",
-          "Medicamento": "Acetaminofen"
-        },
-        {
-          "Identificacion": "321",
-          "Telefono": "31321321",
-          "Provincia": "Cartago",
-          "Canton": "Pacayas",
-          "Enfermedad": "Gastritis",
-          "Medicamento": "Antiacido"
-        },
-        {
-          "Identificacion": "456",
-          "Telefono": "87539856",
-          "Provincia": "San Jose",
-          "Canton": "Pavas",
-          "Enfermedad": "Tos",
-          "Medicamento": "Jarabe"
-        },
-        {
-          "Identificacion": "789",
-          "Telefono": "45522221",
-          "Provincia": "Limón",
-          "Canton": "Puerto Viejo",
-          "Enfermedad": "Migraña",
-          "Medicamento": "Acetaminofen"
-        },
-        {
-          "Identificacion": "345",
-          "Telefono": "45354632",
-          "Provincia": "Guanacaste",
-          "Canton": "Liberia",
-          "Enfermedad": "Dolor de espalda",
-          "Medicamento": "Acetaminofen"
-        },
-        {
-          "Identificacion": "123",
-          "Telefono": "89076541",
-          "Provincia": "Heredia",
-          "Canton": "Barva",
-          "Enfermedad": "Migraña",
-          "Medicamento": "Acetaminofen"
-        },
-        {
-          "Identificacion": "456",
-          "Telefono": "87539856",
-          "Provincia": "San Jose",
-          "Canton": "Pavas",
-          "Enfermedad": "Dolor de Espalda",
-          "Medicamento": "Acetaminofen"
-        },
-        {
-          "Identificacion": "456",
-          "Telefono": "87539856",
-          "Provincia": "San Jose",
-          "Canton": "Pavas",
-          "Enfermedad": "Dolor Garganta",
-          "Medicamento": "Jarabe"
-        },
-        {
-          "Identificacion": "345",
-          "Telefono": "45354632",
-          "Provincia": "Guanacaste",
-          "Canton": "Liberia",
-          "Enfermedad": "Gripe",
-          "Medicamento": "Acetaminofen"
-        },
-        {
-          "Identificacion": "789",
-          "Telefono": "45522221",
-          "Provincia": "Limón",
-          "Canton": "Puerto Viejo",
-          "Enfermedad": "Presion Alta",
-          "Medicamento": "Acetaminofen"
-        }
-      ]
-  }
-  ]
+["123", 89076541, "Heredia", "Barva", "gripe", "acetaminofen"],
+["321", 31321321, "Cartago", "Pacayas", "gastritis", "antiacido"],
+["456", 87539856, "San Jose", "Pavas", "tos", "jarabe"],
+["789", 45522221, "Limón", "Puerto Viejo", "migraña", "acetaminofen"],
+["345", 45354632, "Guanacaste", "Liberia", "dolor", "acetaminofen"],
+["123", 89076541, "Heredia", "Barva", "migraña", "acetaminofen"],
+["456", 87539856, "San Jose", "Pavas", "dolor", "acetaminofen"],
+["456", 87539856, "San Jose", "Pavas", "dolor", "jarabe"],
+["345", 45354632, "Guanacaste", "Liberia", "gripe", "acetaminofen"],
+["789", 45522221, "Limón", "Puerto Viejo", "presion", "acetaminofen"]
+]

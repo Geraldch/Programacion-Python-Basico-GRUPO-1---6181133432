@@ -1,84 +1,88 @@
 import json
-from collections import defaultdict
-
-
-pacientes = 'Estudiantes/Gerald D. Chaves/Proyecto Corto/clinica.json' 
-
+from collections import Counter
 
 def cargar_datos(pacientes):
-    """
-    Carga la información de los pacientes desde un archivo JSON.
-    Se espera que el archivo contenga una lista de diccionarios.
-    """
-    try:
-        with open(pacientes, "r", encoding="utf-8") as archivo:
-            datos_pacientes = json.load(archivo)
-                        # Si es un diccionario, obtenemos sus valores
-            if isinstance(datos_pacientes, dict):
-                lista_pacientes = list(datos_pacientes.values())
-            else:
-                lista_pacientes = datos_pacientes
-            #En esta linea haremos que los datos se muestren ordenadamente para un mejor control visual
-            print(json.dumps(datos_pacientes, indent=4, ensure_ascii=False))  # Solo para visualizar
-            return datos_pacientes  # Devuelve los datos cargados
-        #return datos_pacientes
-    except FileNotFoundError:
-        print(f"Error: El archivo {pacientes} no fue encontrado.")
-        return []
-    except json.JSONDecodeError:
-        print("Error: El archivo JSON tiene un formato incorrecto.")
-        return []
+    with open(pacientes, "r", encoding="utf-8") as file:
+        return json.load(file)
+    
+datos_json = cargar_datos('Estudiantes/Gerald D. Chaves/Proyecto Corto/clinica.json')
     
 
+def generar_reporte_enfermedades(datos):
+    #Le identidica al sistema que el indice 4 tiene las enfermedades por paciente.
+    enfermedades = [fila[4] for fila in datos]
+    #Hace el conteo por enfermedad
+    conteo = Counter(enfermedades)
+    print("\n Enfermedades por paciente:")
+    for enfermedad, cantidad in conteo.items():
+        print(f"{enfermedad}: {cantidad} pacientes")
 
-def generar_reporte_medicamentos(lista_pacientes):
-    """
-    Genera un reporte de los medicamentos recetados y cuenta cuántos pacientes son recetados por cada medicamento.
-    """
-    from collections import defaultdict
-    reporte = defaultdict(int)
-    
-    for paciente in lista_pacientes:
-        # Verificamos que paciente sea un diccionario
-        if isinstance(paciente, dict):
-            medicamentos = paciente.get("Medicamento", [])
-            for medicamento in medicamentos:
-                reporte[medicamento] += 1
-        else:
-            print(f"Advertencia: Se encontró un elemento no esperado: {paciente}")
-    
-    print("Reporte de Medicamentos Recetados:")
-    for medicamento, cantidad in reporte.items():
+def generar_reporte_medicamentos(datos):
+   #Le identidica al sistema que el indice 5 tiene los medicamentos por paciente.
+    medicamentos = [fila[5] for fila in datos]
+    #Hace el conteo por medicamento
+    conteo = Counter(medicamentos)
+    print("\nMedicamentos por paciente:")
+    for medicamento, cantidad in conteo.items():
         print(f"{medicamento}: {cantidad} pacientes")
 
-
-
+def comparar_pacientes(datos, id1, id2):
+    #compara las enfermedades entre el paciente 1 y el paciente 2
+    enfermedades_p1 = set(fila[4] for fila in datos if fila[0] == id1)
+    enfermedades_p2 = set(fila[4] for fila in datos if fila[0] == id2)
+    comunes_enfermedades = enfermedades_p1.intersection(enfermedades_p2)
     
-datos_pacientes = []  # Variable global para almacenar los pacientes
+    #compara los medicamentos entre el paciente 1 y el paciente 2
+    medicamentos_p1 = set(fila[5] for fila in datos if fila[0] == id1)
+    medicamentos_p2 = set(fila[5] for fila in datos if fila[0] == id2)
+    comunes_medicamentos = medicamentos_p1.intersection(medicamentos_p2)
+    
+    print("\nComparación de Pacientes:")
+    if id1 != id2:
+        if comunes_enfermedades:
+            print('\nEnfermedades en común:')
+            #Si no hay comparaciones, muestra ninguna
+            print(f"Enfermedades en común: {', '.join(comunes_enfermedades) if comunes_enfermedades else 'Ninguna'}")
+        else:
+            print('\nNo tienen enfermedades en común.')
+    else:
+        print(f'No es posible hacer la comparativa entre el mismo paciente, utilice identificaciones diferentes por favor.')
+        
+    if id1 != id2:
+        if comunes_enfermedades:
+            print('\nEnfermedades en común:')
+            #Si no hay comparaciones, muestra ninguna
+            print(f"Medicamentos en común: {', '.join(comunes_medicamentos) if comunes_medicamentos else 'Ninguno'}")
+        else:
+            print('\nNo tienen enfermedades en común.')
+    else:
+        print(f'No es posible hacer la comparativa entre el mismo paciente, utilice identificaciones diferentes por favor.')
+        
+
+
     
 while True:
-    print('\n--- Menú de Análisis de Pacientes ---')
-    print('1. Cargar data de los pacientes.')
-    print('2. Reporte de Enfermedades.')
-    print('3. Ver estudiante específico.')
-    print('4. Salir')
-    
-    menu  = input('Ingrese una opción por favor: ')
-
-    if menu == '1':
-        print("\nEsta es la data de los pacientes registrados: ")
-        datos_pacientes = cargar_datos(pacientes)  # Guarda los datos en la variable global
-    elif menu == '2':
-        print("\nReporte de Enfermedades por paciente registrados: ")
-        if datos_pacientes:  # Verifica que la lista no esté vacía
-            generar_reporte_medicamentos(datos_pacientes)
+        print("\nOpciones:")
+        print("1. Generar reporte de enfermedades")
+        print("2. Generar reporte de medicamentos")
+        print("3. Comparar dos pacientes")
+        print("4. Salir")
+        
+        opcion = input("Seleccione una opción: ")
+        if opcion == "1":
+            print("\n-------- Reporte de enfermedades --------")
+            generar_reporte_enfermedades(datos_json)
+        elif opcion == "2":
+            print("\n-------- Reporte de medicamentos --------")
+            generar_reporte_medicamentos(datos_json)
+        elif opcion == "3":
+            print("\n-------- Comparativa entre pacientes --------")
+            id1 = input("Ingrese el ID del primer paciente: ")
+            id2 = input("Ingrese el ID del segundo paciente: ")
+            comparar_pacientes(datos_json, id1, id2)
+        elif opcion == "4":
+            print(f"\nSalida exitosa del programa, vuelva pronto.")
+            break
         else:
-            print("Primero debe cargar los datos de los pacientes (Opción 1).")
-    elif menu == '3':
-        print(f"\nVer estudiante específico.")
-    elif menu == '4':
-        print(f"\nSalida exitosa del programa.")
-        break    
-    else:
-        print(f"\nOpción no válida, intente de nuevo.")    
+            print("Opción inválida. Intente de nuevo.")
 
