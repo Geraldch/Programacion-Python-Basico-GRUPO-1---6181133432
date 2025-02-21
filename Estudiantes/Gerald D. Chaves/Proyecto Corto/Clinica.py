@@ -5,7 +5,7 @@ def cargar_datos(pacientes):
     with open(pacientes, "r", encoding="utf-8") as file:
         return json.load(file)
     
-datos_json = cargar_datos('Estudiantes/Gerald D. Chaves/Proyecto Corto/clinica.json')
+datos_json = cargar_datos('Estudiantes/Gerald D. Chaves/Proyecto Corto/clinica_intermedio.json')
     
 
 def generar_reporte_enfermedades(datos):
